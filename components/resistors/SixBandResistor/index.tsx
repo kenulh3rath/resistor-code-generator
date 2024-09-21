@@ -6,46 +6,110 @@ import clsx from "clsx";
 type color = {
     color: string
     code: string
+    value?: number
 }
 
 const band_colors:color[] = [
     {
+        value: 0,
         color: 'black',
         code: '#000000',
     },
     {
+        value: 1,
         color: 'brown',
         code: '#804000',
     },
     {
+        value: 2,
         color: 'red',
         code: '#ff0000',
     },
     {
+        value: 3,
         color: 'orange',
         code: '#ff8000',
     },
     {
+        value: 4,
         color: 'yellow',
         code: '#ffff00',
     },
     {
+        value: 5,
         color: 'green',
         code: '#00ff00',
     },
     {
+        value: 6,
         color: 'blue',
         code: '#0000ff',
     },
     {
+        value: 7,
         color: 'violet',
         code: '#8000ff',
     },
     {
+        value: 8,
         color: 'gray',
         code: '#808080',
     },
     {
+        value: 9,
+        color: 'white',
+        code: '#ffffff',
+    },
+]
+
+const multiplier_colors:color[] = [
+    {
+        value: 1,
+        color: 'black',
+        code: '#000000',
+    },
+    {
+        value: 10,
+        color: 'brown',
+        code: '#804000',
+    },
+    {
+        value: 100,
+        color: 'red',
+        code: '#ff0000',
+    },
+    {
+        value: 1000,
+        color: 'orange',
+        code: '#ff8000',
+    },
+    {
+        value: 10000,
+        color: 'yellow',
+        code: '#ffff00',
+    },
+    {
+        value: 100000,
+        color: 'green',
+        code: '#00ff00',
+    },
+    {
+        value: 1000000,
+        color: 'blue',
+        code: '#0000ff',
+    },
+    {
+        value: 10000000,
+        color: 'violet',
+        code: '#8000ff',
+    },
+    {
+        value: 100000000,
+        color: 'gray',
+        code: '#808080',
+    },
+    {
+        value: 1000000000,
         color: 'white',
         code: '#ffffff',
     },
@@ -53,50 +117,56 @@ const band_colors:color[] = [
 
 const tolerance_colors:color[] = [
     {
-        color: 'red',
-        code: '#ff0000',
-    },
-    {
-        color: 'orange',
-        code: '#ff8000',
-    },
-    {
-        color: 'yellow',
-        code: '#ffff00',
-    },
-    {
-        color: 'gray',
-        code: '#808080',
-    },
-    {
-        color: 'black',
-        code: '#000000',
-    },
-    {
+        value: 1,
         color: 'brown',
         code: '#804000',
     },
     {
+        value: 2,
+        color: 'red',
+        code: '#ff0000',
+    },
+    {
+        value: 3,
+        color: 'orange',
+        code: '#ff8000',
+    },
+    {
+        value: 4,
+        color: 'yellow',
+        code: '#ffff00',
+    },
+    {
+        value: 0.5,
+        color: 'green',
+        code: '#00ff00',
+    },
+    {
+        value: 0.25,
+        color: 'blue',
+        code: '#0000ff',
+    },
+    {
+        value: 0.1,
         color: 'violet',
         code: '#8000ff',
     },
     {
-        color: 'white',
-        code: '#ffffff',
+        value: 0.05,
+        color: 'Gray',
+        code: '#808080',
     },
     {
-        color: 'none',
-        code: '#000000',
+        value: 5,
+        color: 'gold',
+        code: '#ffd700',
+    },
+    {
+        value: 10,
+        color: 'silver',
+        code: '#c0c0c0',
     },
 ]
-
-// ppm_colors
-// "#ff0000",  // red
-// "#ff8000",  // orange
-// "#ffff00",  // yellow
-// "#808080",  // gray
-// "#804000",  // brown
-// "#8000ff",  // violet
 
 const ppm_colors:color[] = [
     {
@@ -127,12 +197,13 @@ const ppm_colors:color[] = [
 
 const index = () => {
 
-    const [band1, setBand1] = useState(band_colors[0].color)
-    const [band2, setBand2] = useState(band_colors[0].color)
-    const [band3, setBand3] = useState(band_colors[0].color)
-    const [band4, setBand4] = useState(band_colors[0].color)
-    const [band5, setBand5] = useState(tolerance_colors[0].color)
+    const [band1, setBand1] = useState<color>(band_colors[1])
+    const [band2, setBand2] = useState<color>(band_colors[2])
+    const [band3, setBand3] = useState<color>(band_colors[3])
+    const [band4, setBand4] = useState<color>(multiplier_colors[2])
+    const [band5, setBand5] = useState<color>(tolerance_colors[0])
     const [band6, setBand6] = useState(ppm_colors[0].color)
+
 
     return (
         <div>
@@ -140,19 +211,19 @@ const index = () => {
 
                 <div className="flex z-10 border border-slate-700 rounded-3xl">
                     <div className={'w-10 h-40 bg-amber-200 rounded-l-3xl'}/>
-                    <div className={clsx(`w-10 h-40 border-x border-slate-500`)} style={{backgroundColor: band1}}/>  {/*Code*/}
+                    <div className={clsx(`w-10 h-40 border-x border-slate-500`)} style={{backgroundColor: band1.color}}/>  {/*Code*/}
                     <div className={'w-10 h-40 bg-amber-200 rounded-r-3xl'}/>
                 </div>
 
                 <div className="flex z-40 border border-y-slate-700">
                     <div className={'w-5 h-20 bg-amber-200'}/>
-                    <div className={'w-10 h-20 border-x border-slate-500'} style={{backgroundColor: band2}}/>  {/*Code*/}
+                    <div className={'w-10 h-20 border-x border-slate-500'} style={{backgroundColor: band2.color}}/>  {/*Code*/}
                     <div className={'w-5 h-20 bg-amber-200'}/>
-                    <div className={'w-10 h-20 border-x border-slate-500'} style={{backgroundColor: band3}}/>  {/*Code*/}
+                    <div className={'w-10 h-20 border-x border-slate-500'} style={{backgroundColor: band3.color}}/>  {/*Code*/}
                     <div className={'w-5 h-20 bg-amber-200'}/>
-                    <div className={'w-10 h-20 border-x border-slate-500'} style={{backgroundColor: band4}}/>  {/*Code*/}
+                    <div className={'w-10 h-20 border-x border-slate-500'} style={{backgroundColor: band4.color}}/>  {/*Code*/}
                     <div className={'w-5 h-20 bg-amber-200'}/>
-                    <div className={'w-10 h-20 border-x border-slate-500'} style={{backgroundColor: band5}}/>  {/*Code*/}
+                    <div className={'w-10 h-20 border-x border-slate-500'} style={{backgroundColor: band5.color}}/>  {/*Code*/}
                     <div className={'w-10 h-20 bg-amber-200'}/>
                 </div>
 
@@ -178,9 +249,10 @@ const index = () => {
                         className={'p-2 rounded-xl bg-white border border-slate-200'}
                         onChange={(e) =>
                             setBand1(
-                                band_colors[parseInt(e.target.value)].color
+                                band_colors[parseInt(e.target.value)]
                             )
                         }
+                        value={band1.value}
                     >
                         {band_colors.map((color, index) => (
                             <option
@@ -208,9 +280,10 @@ const index = () => {
                         className={'p-2 rounded-xl bg-white border border-slate-200'}
                         onChange={(e) =>
                             setBand2(
-                                band_colors[parseInt(e.target.value)].color
+                                band_colors[parseInt(e.target.value)]
                             )
                         }
+                        value={band2.value}
                     >
                         {band_colors.map((color, index) => (
                             <option
@@ -238,9 +311,10 @@ const index = () => {
                         className={'p-2 rounded-xl bg-white border border-slate-200'}
                         onChange={(e) =>
                             setBand3(
-                                band_colors[parseInt(e.target.value)].color
+                                band_colors[parseInt(e.target.value)]
                             )
                         }
+                        value={band3.value}
                     >
                         {band_colors.map((color, index) => (
                             <option
@@ -256,11 +330,11 @@ const index = () => {
 
                 </div>
 
-                {/*Band 4*/}
+                {/*multiplier*/}
                 <div className="flex gap-2 items-center w-fit">
 
                     <label htmlFor="band1">
-                        Band 4
+                        Multiplier Band
                     </label>
 
                     <select
@@ -268,11 +342,12 @@ const index = () => {
                         className={'p-2 rounded-xl bg-white border border-slate-200'}
                         onChange={(e) =>
                             setBand4(
-                                band_colors[parseInt(e.target.value)].color
+                                multiplier_colors[parseInt(e.target.value)]
                             )
                         }
+                        value={band4.value}
                     >
-                        {band_colors.map((color, index) => (
+                        {multiplier_colors.map((color, index) => (
                             <option
                                 key={index}
                                 value={index}
@@ -298,11 +373,12 @@ const index = () => {
                         className={'p-2 rounded-xl bg-white border border-slate-200'}
                         onChange={(e) =>
                             setBand5(
-                                band_colors[parseInt(e.target.value)].color
+                                tolerance_colors[parseInt(e.target.value)]
                             )
                         }
+                        value={band5.value}
                     >
-                        {band_colors.map((color, index) => (
+                        {tolerance_colors.map((color, index) => (
                             <option
                                 key={index}
                                 value={index}
@@ -345,6 +421,32 @@ const index = () => {
                     </select>
 
                 </div>
+
+            </div>
+
+            {/*Resistance*/}
+            <div className="">
+                <p>
+                    Resistance:
+                    {
+                        (((band1.value! * 100) + (band2.value! * 10) + band3.value!) * band4.value!) / 1000
+                    }
+                </p>
+
+                <p>
+                    Minimum Tolerance:
+                    {
+                        (((band1.value! * 100) + (band2.value! * 10) + band3.value!) * band4.value!) * (1 - (band5.value! / 1000))
+                    }
+
+                </p>
+
+                <p>
+                    Maximum Tolerance:
+                    {
+                        (((band1.value! * 100) + (band2.value! * 10) + band3.value!) * band4.value!) * (1 + (band5.value! / 1000))
+                    }
+                </p>
 
             </div>
 
